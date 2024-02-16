@@ -7,7 +7,7 @@ import { Card } from "@/components/Card";
 
 export default function SalesPromoter() {
   return (
-    <div className="bg-gray-50 w-screen h-screen p-14 space-y-10 overflow-auto">
+    <div className="bg-gray-50 w-screen h-screen p-4 md:p-12 lg:p-14 space-y-10 overflow-auto">
       <header className="bg-white p-6 rounded-xl flex flex-wrap md:flex-nowrap items-center justify-between">
         <div className="flex items-center space-x-4">
           <img
