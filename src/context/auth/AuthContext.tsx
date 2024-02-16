@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const subscriber = onIdTokenChanged(auth, async (profile) => {
       const profileDetails = await AuthServices.authStateChanged(profile);
 
-      if (!profileDetails) {
+      if (!isAuthenticated) {
         destroyCookie(null, "@authptr-token");
         push("/signin");
         return;
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(false);
     });
     return subscriber;
-  }, [push]);
+  }, [push, isAuthenticated]);
 
   return (
     <AuthContext.Provider
