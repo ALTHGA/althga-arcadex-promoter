@@ -1,9 +1,8 @@
-import Image from "next/image";
-import { FaHouse, FaArrowRight, FaUsers } from "react-icons/fa6";
+import { FaHouse, FaUsers } from "react-icons/fa6";
 import { MdDownload } from "react-icons/md";
 
-import { IoSearch } from "react-icons/io5";
 import { Card } from "@/components/Card";
+import { IoSearch } from "react-icons/io5";
 
 export default function SalesPromoter() {
   return (
@@ -26,7 +25,7 @@ export default function SalesPromoter() {
 
         <div className="flex space-x-6 justify-end w-full mt-4 md:mt-0">
           <button className="text-sm">Sair da conta</button>
-          <button className="bg-gray-900 hover:bg-white border-2 border-transparent hover:border-gray-900 px-2 md:px-4 py-2 md:py-3 rounded-lg text-sm text-white hover:text-gray-900 transition duration-100 ease-out font-medium">
+          <button className="bg-gray-900 hover:bg-white border-2 border-transparent hover:border-gray-900 px-2 md:px-4 py-2 md:py-3 rounded-lg text-sm text-white hover:text-gray-900 transition duration-200  ease-out font-medium">
             Compartilhar meu link
           </button>
         </div>
@@ -50,12 +49,18 @@ export default function SalesPromoter() {
 
         <div className="flex items-center justify-end gap-2 col-span-3 md:col-span-1">
           <div className="h-10 col-span-1 bg-white flex items-center rounded-md gap-2 w-full  justify-evenly">
-            <input type="date" className="outline-none" />
+            <input
+              type="date"
+              className="outline-none bg-transparent cursor-pointer"
+            />
 
-            <input type="date" className="outline-none" />
+            <input
+              type="date"
+              className="outline-none bg-transparent cursor-pointer"
+            />
           </div>
 
-          <button className="bg-gray-900 flex justify-center items-center col-span-1 text-white h-10 w-10 flex-shrink-0 rounded-md">
+          <button className="bg-gray-900 flex justify-center items-center col-span-1 text-white h-10 w-10 flex-shrink-0 rounded-md hover:text-gray-900 border-2 border-transparent hover:border-gray-900 hover:bg-white transition duration-200 ease-linear">
             <MdDownload className="h-6 w-6" />
           </button>
         </div>
