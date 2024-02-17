@@ -4,7 +4,6 @@ import { auth } from "@/database/firebase";
 import { AuthServices } from "@/services/auth";
 import { User } from "@/types/User";
 import { signOut as authSignOut, onIdTokenChanged } from "firebase/auth";
-import { useRouter } from "next/navigation";
 import { destroyCookie } from "nookies";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
@@ -28,7 +27,6 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextProps);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const { push } = useRouter();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   let isAuthenticated = !!user;
@@ -43,17 +41,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   async function signOut() {
-    await authSignOut(auth);
+    if (isAuthenticated) {
+      await authSignOut(auth);
+    }
     destroyCookie(null, "@authptr-token");
+    setUser(null);
+    setLoading(false);
   }
 
   useEffect(() => {
     const subscriber = onIdTokenChanged(auth, async (profile) => {
       const profileDetails = await AuthServices.authStateChanged(profile);
 
-      if (!isAuthenticated) {
-        destroyCookie(null, "@authptr-token");
-        push("/signin");
+      if (!profileDetails) {
+        signOut();
         return;
       }
 
@@ -61,7 +62,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(false);
     });
     return subscriber;
-  }, [push, isAuthenticated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AuthContext.Provider
