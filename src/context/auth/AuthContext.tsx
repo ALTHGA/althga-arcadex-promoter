@@ -51,11 +51,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     const subscriber = onIdTokenChanged(auth, async (profile) => {
-      if (!profile) return destroyCookie(null, "@authptr-token");
-
       const profileDetails = await AuthServices.authStateChanged(profile);
 
-      setUser(profileDetails);
+      if (!profileDetails) {
+        destroyCookie(null, "@authptr-token");
+      } else {
+        setUser(profileDetails);
+      }
+
       setLoading(false);
     });
     return subscriber;

@@ -14,8 +14,8 @@ export default function Home() {
 
   const handleUserLogout = async () => {
     try {
-      await signOut();
       router.push("/signin");
+      await signOut();
     } catch (error) {}
   };
 

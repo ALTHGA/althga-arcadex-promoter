@@ -29,6 +29,7 @@ export const AuthServices = {
   },
 
   authStateChanged: async (user: AuthUserProfile | null) => {
-    return await AuthServices.details(user);
+    const profile = await AuthServices.details(user);
+    return profile;
   },
 };
