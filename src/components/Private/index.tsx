@@ -11,8 +11,8 @@ export const Private = ({ children }: PrivateProps) => {
   const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      push("/dashboard");
+    if (!isAuthenticated) {
+      push("/signin");
     }
   }, [isAuthenticated, push]);
 

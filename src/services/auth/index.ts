@@ -9,7 +9,8 @@ import { setCookie } from "nookies";
 
 type Form = { email: string; password: string };
 export const AuthServices = {
-  details: async (user: AuthUserProfile): Promise<User | null> => {
+  details: async (user: AuthUserProfile | null): Promise<User | null> => {
+    if (!user) return null;
     const { token } = await user.getIdTokenResult(true);
 
     const docRef = doc(db, "user", user.uid);
@@ -28,8 +29,6 @@ export const AuthServices = {
   },
 
   authStateChanged: async (user: AuthUserProfile | null) => {
-    if (user) {
-      return await AuthServices.details(user);
-    } else return null;
+    return await AuthServices.details(user);
   },
 };
