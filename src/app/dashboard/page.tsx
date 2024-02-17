@@ -20,7 +20,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gray-50 w-screen h-screen p-4 md:p-12 lg:p-14 space-y-10 overflow-auto">
+    <div className="bg-gray-50 w-screen h-svh p-4 md:p-12 lg:p-14  space-y-10 overflow-y-auto">
       <header className="bg-white p-6 rounded-xl flex flex-wrap md:flex-nowrap items-center justify-between">
         <div className="flex items-center space-x-4">
           <img
@@ -132,7 +132,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="col-span-3 h-full lg:col-span-1 bg-white p-6 rounded-lg block space-y-4 ">
+        <div className="col-span-3 h-full lg:col-span-1 bg-white p-6 rounded-lg block space-y-4">
           <div className="w-full flex flex-col  md:space-y-0 border-b border-gray-100 pb-4">
             <h1 className="font-semibold text-lg text-gray-900">Pagamentos</h1>
             <p className="text-gray-500">Pagamentos durante o período</p>

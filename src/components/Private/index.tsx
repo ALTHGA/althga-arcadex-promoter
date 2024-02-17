@@ -7,7 +7,6 @@ type PrivateProps = {
 };
 export const Private = ({ children }: PrivateProps) => {
   const { isAuthenticated } = useContext(AuthContext);
-
   return (
     <>
       {!isAuthenticated && null}

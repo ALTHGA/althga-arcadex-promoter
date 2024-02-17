@@ -31,7 +31,7 @@ export default function Signin() {
     resolver: zodResolver(schema),
   });
 
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const handleChangeVisible = () => setVisible(!visible);
 
@@ -67,10 +67,10 @@ export default function Signin() {
               Email
             </label>
             <Input
-              {...register("email")}
               id="email-address"
               helperText={errors.email?.message}
               type="email"
+              {...register("email")}
             />
           </div>
 
@@ -84,7 +84,6 @@ export default function Signin() {
               </a>
             </span>
             <Input
-              {...register("password")}
               helperText={errors.password?.message}
               id="password"
               type={visible ? "text" : "password"}
@@ -96,6 +95,7 @@ export default function Signin() {
                   {visible ? <VscEye /> : <VscEyeClosed />}
                 </button>
               )}
+              {...register("password")}
             />
           </div>
 
